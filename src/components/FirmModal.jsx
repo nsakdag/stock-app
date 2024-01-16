@@ -4,7 +4,7 @@ import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField"
 import Modal from "@mui/material/Modal"
 import { modalStyle } from "../styles/globalStyles"
-import useStockCalls from "../service/useStockCalls"
+import useStockCalls from "../service/useStcokCalls"
 
 export default function FirmModal({ open, handleClose, info, setInfo }) {
   const { postStock, putStock } = useStockCalls()

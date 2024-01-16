@@ -5,8 +5,12 @@ import useStockCalls from "../service/useStcokCalls"
 import { useSelector } from "react-redux"
 import { Grid } from "@mui/material"
 import FirmCard from "../components/FirmCard"
-
-
+import FirmModal from "../components/FirmModal"
+import TableSkeleton, {
+  CardSkeleton,
+  ErrorMsg,
+  NoDataMsg,
+} from "../components/DataFetchMsg"
 
 const Firms = () => {
   // const { getFirms, getSales } = useStockCalls()
@@ -37,11 +41,25 @@ const Firms = () => {
       <Typography variant="h4" color="error" mb={3}>
         Firms
       </Typography>
-     
+      <Button variant="contained" onClick={handleOpen}>
+        New Firm
+      </Button>
 
-  
+      <FirmModal
+        open={open}
+        handleClose={handleClose}
+        info={info}
+        setInfo={setInfo}
+      />
 
-  
+      {error && <ErrorMsg />}
+      {loading && (
+        <CardSkeleton>
+          <FirmCard />
+        </CardSkeleton>
+      )}
+
+      {!error && !loading && !firms.length && <NoDataMsg />}
 
       {!loading && !error && firms.length > 0 && (
         <Grid container gap={2} mt={3} justifyContent={"center"}>
